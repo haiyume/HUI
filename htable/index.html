@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>htable</title>
+<style type="text/css">
+/*初始化*/
+*{
+	margin:0;
+	padding:0;
+	list-style:none;
+	font-size: 12px;
+}
+h2{
+	line-height: 30px;
+	padding-left: 20px;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="css/htable.css">
+</head>
+<body>
+<h2>1. 正常表格</h2>
+<div class="htable-box" id="htable1"></div>
+<h2>2. 冻结表头 + 冻结列 + 排序 + 加checkbox复选框</h2>
+<div class="htable-box" id="htable2"></div>
+
+<input type="button" value="更新" id="bt1" />
+<input type="button" value="控制台打印已选checkbox值" id="bt2" />
+<input type="button" value="alert已选行的ID值" id="bt3" />
+
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/htable-2.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+	//替换函数(参数：当前value,当前value的父级数据)
+	var replace=function(str,d,eq){
+		return eq+' - <a href="javascript:;">编辑</a> <a href="javascript:;">删除</a>';
+	};
+
+	var json = {
+		code : 200,
+		data : {
+			result : [
+				{a : 1, b : 2, c : 3, d : 4},
+				{a : 1, b : 2, c : 3, d : 4},
+				{a : 1, b : 2, c : 3, d : 4},
+				{a : 1, b : 2, c : 3, d : 4},
+				{a : 1, b : 2, c : 3, d : 4}
+			]
+		}
+	};
+
+	//正常表格
+	var opt1 = {
+		url : json,
+		model:[
+			{value:"序号",width:100},
+			{key:"a",value:"ID",width:100},
+			{key:"b",value:"姓名",width:100},
+			{key:"c",value:"班级A",width:200},
+			{key:"d",value:"日期",width:100}
+		]
+	};
+
+	//冻结表头，冻结列，排序，加checkbox
+	var opt2 = {
+		url:"data.json",
+		horiAuto : true,		//是否自动显示水平滚动条
+		mulSelect:'id',			//加多选checkbox
+		selected : 1,			//激活点击行选择行 1-单选 其它-多选
+		fixHeight : 200,		//激活表头冻结
+		fixed : 'left',			//激活列冻结
+		order:true,				//激活排序总开关
+		page : true,			//激活分页总开关（默认后端分页）
+		fakePage:true,			//激活前端分页
+		pageSize : 10,
+		model:[
+			{value:"序号",width:100,cla:'hide',fixed:true},
+			{key:"id",value:"ID",width:100,order:true,fixed:true},
+			{key:"name",value:"姓名",width:300,order:true},
+			{key:"abc.a",value:"班级A",width:200,order:true},
+			{key:"date",value:"日期",width:100,order:true},
+			{key:"id",value:"ID",width:100,order:true},
+			{key:"name",value:"姓名",width:100,order:true},
+			{key:"abc.a",value:"班级",width:200,order:true},
+			{key:"date",value:"日期",width:100,order:true},
+			{key:"id",value:"操作",width:100,title:'no',repla:replace}
+		],
+		//回调函数
+		cb:function(a){
+			//console.log(a);
+		}
+	};
+
+	$("#htable1").htable(opt1);
+	$("#htable2").htable(opt2);
+	
+	//console.log($(".htable")[0].data);
+	$("#bt1").click(function(){
+		$("#htable2")[0].update();
+		alert('表格数据已刷新');
+	});
+	$("#bt2").click(function(){
+		var da = $("#htable2")[0].hdata.getChecked();
+		console.log(da)
+	});
+	$("#bt3").click(function(){
+		var da = $("#htable2")[0].hdata.getChecked(true,'id');
+		alert(da)
+	});
+
+</script>
+</body>
+</html>

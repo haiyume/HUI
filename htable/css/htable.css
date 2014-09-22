@@ -1,0 +1,43 @@
+/*表格*/
+.loading{background: url('../img/loading.gif') center 45px no-repeat;}
+.htable{background-color:#eaeaea;width:100%;border-top:1px solid #e9e9e9;border-right:1px solid #e9e9e9;border-collapse: collapse; border-spacing: 0;}
+.htable tr{line-height:20px;text-align:center;border-bottom:1px solid #e9e9e9;}
+.htable tr.nodata{line-height:28px;}
+.htable tbody tr:hover,.htable-hover{background-color: #DFE8F6;transition:0s;}
+.htable td{border-left:1px solid #e9e9e9;}
+.htable .htb-td{line-height: 18px;}
+.htable thead{background-color:#f3f5f7;}
+.htable tbody{background-color:#FFF;}
+.htable a{color:#0256b4;text-decoration: none;}
+.htable a:hover{text-decoration:underline;}
+.htable .order{cursor: pointer;}
+.htable .order i{font-style: normal;font-size: 10px;display:inline-block;width:9px;height:15px;vertical-align: middle;background: url(../img/htable-sort.png) left 0 no-repeat;}
+.htable .order.up i{height:7px;background-position:right 0;}
+.htable .order.down i{height:7px;background-position:right -8px;}
+.htable-header{overflow: hidden;border-right: 1px solid #e9e9e9;border-bottom: 1px solid #e9e9e9;}
+.htable-fixed .htable-thead tr{border-bottom:none;}
+.htable-header tr{border-bottom: none;}
+.htable .htb-td{padding:4px;}
+.htable .htb-hide,.htable .htb-hide *,.htable-slide thead,.htable-slide .htable thead *{height:0px;overflow: hidden;margin:0;padding:0;}
+.htable .htb-hide input,.htable-slide thead input{display: none;}
+.htable-body{border-bottom:1px solid #e9e9e9;}
+.htable-slide{float: left;overflow: hidden;position: absolute;left: 0; top: 0;border-right:1px solid #e9e9e9;}
+.htable-slide .htable{width: inherit;}
+.htable-fixed .htable-body .htable, .htable-fixed .htable-slide .htable{border-top:none;}
+.htable-fixed .htb-td{text-overflow: ellipsis;white-space:nowrap;overflow:hidden;margin: 0 auto;}
+.htable-slide-header{position: absolute;left:0;top:0;overflow: hidden;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;}
+.htable .h-checkbox,.htable .b-checkbox,.htable .s-checkbox{margin:0 5px;}
+.htable .htable-select td{background-color: #74b2f0;}
+.htable-zc .htable-body thead{border-top:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;}
+.htable-page{text-align: right;height: 30px;padding-top: 10px;line-height: 23px;}
+.htable-page a,#pager span{display:inline-block;margin:0 5px;text-decoration:none;color:#333333;}
+.htable-page .pageNo{background-color: #CCC;}
+.htable-page .page_total{border:none;cursor: default;}
+.htable-page .page:hover{border-color: #74B2F0;}
+.htable-page .page_dis:hover{border-color: #cde0ef;cursor: default;}
+.htable-page .page_w,.page_s,.page_p{min-width: 1px;height: 23px;background-color: #f6fbff;padding:0 12px;border:1px solid #cde0ef;vertical-align:middle; border-radius: 2px;}
+.htable-page span input{width:30px;height: 22px;vertical-align: middle;text-align: center;}
+.htable-page span select{height: 22px;width:40px;padding:0;}
+.htable-page .page_s{background: url(../img/htable.png) 6px 4px no-repeat;}
+.htable-page .page_w{background: url(../img/htable.png) 6px -39px no-repeat;}
+.htable-box{background: url(../img/loading.gif) center 35px no-repeat;min-height:100px;}
