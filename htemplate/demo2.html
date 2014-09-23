@@ -1,0 +1,49 @@
+<!DOCTYPE html>  
+<html lang="zh-CN"> 
+<head> 
+<meta charset="utf-8"> 
+<title>标题</title>
+<style type="text/css">
+    .aa{display: none;}
+</style>
+</head> 
+<body> 
+
+<div class="aa" id="d1" data="a"><li>{a}</li></div>
+<div class="aa" id="d2">{b,fn}</div>
+<div class="aa" id="d3" data="c"><li>{c1}</li></div>
+<div class="aa" id="d4"><span>{d.d1.da}</span><span>{d.d2.es}</span></div>
+
+
+<script src="htemplate-1.2.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    //定义渲染DOM要用到的数据
+    var d = {
+        a:[1,2,3,4,5],
+        b:200,
+        c:[
+            {c1:11,c2:22},
+            {c1:111,c2:222}
+        ],
+        d:{
+            d1:{da:'da',db:'db'},
+            d2:{as:'as',es:'es'}
+        }
+    };
+    var fns = {
+        fn : function(d,dd,eq){
+            return '***'+ d + '***' + dd + '***' + eq +'***';
+        }
+    };
+    var maxLength = 2;
+
+    //渲染
+    htemplate(d,fns,maxLength).render('aa');
+    
+
+    //document.getElementById("d1").innerHTML = htemplate('<h1><span>{a}</span>{}:{b}+{d.d1.da}</h1>',d);
+
+</script>
+</body> 
+</html> 

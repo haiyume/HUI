@@ -1,0 +1,49 @@
+示例：htemplate(temp, data, fns, maxLength);
+
+htemplate的四个参数：temp - 模板字符串，data - 数据，fns - 替换函数集（可省略），maxLength - 长度截取（可省略，0为不限制，默认0）。
+从第一个参数传起: 为插入模式，使用方法为 xx.innerHTML = htemplate(temp,data);
+从第二个参数传起：为渲染模式，使用方法为 htemplate(data).render('className');
+
+//定义一个替换函数集，不使用则可省略
+var fns = {
+    funa : function(d,dd,eq){
+        return d + '---花落无声';
+    },
+    funb:function(d){
+        return d;
+    }
+};
+
+示例1: var data = {a:100, b:200};
+document.getElementById("id").innerHTML = htemplate('<h1>{a}</h1>',data);	//输出<h1>100</h1>
+
+示例2：var data = {a: {a1: 'a1', a2: 'a2'}, b:200};
+document.getElementById("id").innerHTML = htemplate('<h1>{a.a1}</h1>',data);	//输出<h1>a1</h1>
+
+示例3：var data = [100,200,300];
+document.getElementById("id").innerHTML = htemplate('<h1>{x}</h1>',data);	//输出<h1>100</h1><h1>200</h1><h1>300</h1>
+
+示例4：var data = [{a:100,b:200}, {a:101,b:201}, {a:102,b:202}];
+document.getElementById("id").innerHTML = htemplate('<h1>{}:{a}-{b}</h1>',data);	//输出<h1>1:100-200</h1><h1>2:101-201</h1><h1>3:102-202</h1>
+
+示例5：var data = {a:100, b:200};
+document.getElementById("id").innerHTML = htemplate('<h1>{a,funa}</h1>',data,fns);	//输出<h1>100---花落无声</h1>
+
+示例6：
+DOM结构：
+<div class="htemplate" data="a"><li>{a1}</li></div>
+<div class="htemplate">{b.b1}</div>
+JS：
+var data = {
+    a:[{a1:100},{a1:200},{a1:300}], 
+    b:{b1:'b1', b2:'b2'}
+};
+htemplate(data).render();	//执行渲染，此处htemplate可以传入data,fns,maxLength三个参数中的至少一个,render参数是要渲染的类名，可省略，默认'htemplate'。
+//输出如下：
+<div class="htemplate" data="a"><li>100</li><<li>200</li><li>300</li>/div>
+<div class="htemplate">b1</div>
+
+
+
+
+
